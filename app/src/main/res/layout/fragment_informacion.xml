@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Contenido del módulo -->
+        <TextView
+            android:id="@+id/textContenido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#1E1E1E"
+            android:lineSpacingExtra="6dp"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="25dp"/>
+
+        <!-- BOTÓN 1 -->
+        <Button
+            android:id="@+id/btnQueEs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿QUÉ ES?"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="25dp"
+            android:fontFamily="@font/fuente"
+            android:backgroundTint="@color/blue_dark"/>
+
+        <!-- BOTÓN 2 -->
+        <Button
+            android:id="@+id/btnImportancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Por qué es importante?"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="25dp"
+            android:fontFamily="@font/fuente"
+            android:backgroundTint="@color/blue_dark"/>
+
+    </LinearLayout>
+</ScrollView>
