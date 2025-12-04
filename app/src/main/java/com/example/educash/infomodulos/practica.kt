@@ -1,60 +1,66 @@
 package com.example.educash.infomodulos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import com.example.educash.R
+import com.example.educash.question_answer.question_answer // Importar la Activity de destino
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [practica.newInstance] factory method to
- * create an instance of this fragment.
- */
 class practica : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var moduloId: Int = -1
+    private var temaNombre: String? = null // Variable para guardar el nombre del módulo/tema
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+        // 1. Recibe los datos pasados desde la Activity principal (SubtitleActivity)
+        moduloId = arguments?.getInt("moduloId") ?: -1
+        temaNombre = arguments?.getString("temaNombre")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_practica, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_practica, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment practica.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            practica().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        // 2. Inicializar las vistas del layout
+        val btnIniciarPrueba = view.findViewById<Button>(R.id.btnIniciarPrueba)
+        val tvModuloNombre = view.findViewById<TextView>(R.id.tvModuloNombre)
+
+        // 3. Mostrar el nombre del módulo en el título del Quiz
+        tvModuloNombre.text = "Prueba de ${temaNombre ?: "Módulo"}"
+
+        // 4. Configurar el Click Listener para iniciar el Quiz
+        btnIniciarPrueba.setOnClickListener {
+            // Verificamos que tenemos los datos esenciales
+            if (moduloId > 0 && !temaNombre.isNullOrEmpty()) {
+
+                // Creamos el Intent para lanzar la Activity question_answer
+                val intent = Intent(requireContext(), question_answer::class.java).apply {
+                    // El moduloId es el temaId que el Quiz necesita para cargar preguntas
+                    putExtra("temaId", moduloId)
+                    // Pasamos el nombre para que la Activity del Quiz lo muestre
+                    putExtra("temaNombre", temaNombre)
                 }
+                startActivity(intent)
+
+            } else {
+                tvModuloNombre.text = "Error: Módulo ID no válido para iniciar la prueba."
+                // Opcional: Mostrar un Toast al usuario
+                // Toast.makeText(requireContext(), "No se puede iniciar la prueba, faltan datos.", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // El TextView con ID 'text_practica_content' ya no existe en el nuevo layout,
+        // así que el código anterior que lo usaba ha sido reemplazado.
+
+        return view
     }
 }
