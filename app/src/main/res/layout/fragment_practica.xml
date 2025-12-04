@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".infomodulos.practica">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Nepecito de marylu -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
