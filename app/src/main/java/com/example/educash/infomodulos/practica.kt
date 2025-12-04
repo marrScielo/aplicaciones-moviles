@@ -44,10 +44,10 @@ class practica : Fragment() {
 
                 // Creamos el Intent para lanzar la Activity question_answer
                 val intent = Intent(requireContext(), question_answer::class.java).apply {
-                    // El moduloId es el temaId que el Quiz necesita para cargar preguntas
+
                     putExtra("temaId", moduloId)
-                    // Pasamos el nombre para que la Activity del Quiz lo muestre
                     putExtra("temaNombre", temaNombre)
+                    putExtra("moduloId", moduloId)
                 }
                 startActivity(intent)
 
@@ -57,9 +57,6 @@ class practica : Fragment() {
                 // Toast.makeText(requireContext(), "No se puede iniciar la prueba, faltan datos.", Toast.LENGTH_SHORT).show()
             }
         }
-
-        // El TextView con ID 'text_practica_content' ya no existe en el nuevo layout,
-        // así que el código anterior que lo usaba ha sido reemplazado.
 
         return view
     }

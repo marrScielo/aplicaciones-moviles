@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvIndicacion"
-        android:fontFamily="@font/fuente_light"/>
+        />
 
     <Button
         android:id="@+id/btnC"
@@ -99,7 +99,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnB"
-        android:fontFamily="@font/fuente_light"/>
+        />
 
     <Button
         android:id="@+id/btnB"
@@ -112,6 +112,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnA"
-        android:fontFamily="@font/fuente_light"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

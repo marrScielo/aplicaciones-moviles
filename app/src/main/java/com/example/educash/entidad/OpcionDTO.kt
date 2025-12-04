@@ -6,5 +6,5 @@ data class OpcionDTO(
     val id: Int,
     val texto: String,
     @SerializedName("es_correcta")
-    val es_correcta: Boolean? = false
+    val es_correcta: Boolean = false
 )

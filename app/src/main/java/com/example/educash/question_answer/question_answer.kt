@@ -31,8 +31,9 @@ class question_answer : AppCompatActivity() {
 
     private var lista: List<PreguntaDTO> = emptyList()
     private var idx = 0
-    private var temaId = 1
+    private var moduloId = 1
     private var temaNombre = "Tema"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,14 +48,13 @@ class question_answer : AppCompatActivity() {
         btnB = findViewById(R.id.btnB)
         btnC = findViewById(R.id.btnC)
         progressTimer = findViewById(R.id.progressTimer)
-
-        temaId = intent.getIntExtra("temaId", 1)
+        moduloId = intent.getIntExtra("moduloId", 1)
         temaNombre = intent.getStringExtra("temaNombre") ?: "Tema"
         tvTema.text = temaNombre
 
         lifecycleScope.launch {
             try {
-                val resp = ApiClient.quizApi.getQuiz(temaId)
+                val resp = ApiClient.quizApi.getQuiz(moduloId)
                 if (!resp.isSuccessful) {
                     Toast.makeText(this@question_answer, "HTTP ${resp.code()}", Toast.LENGTH_SHORT).show()
                     return@launch

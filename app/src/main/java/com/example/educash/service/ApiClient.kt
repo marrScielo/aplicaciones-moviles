@@ -4,6 +4,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.educash.entidad.PreguntaDTO
+
+import com.example.educash.servic.QuizApi
+
+
 
 object ApiClient {
     private const val BASE_URL = "http://192.168.18.162:3000/"
@@ -23,6 +28,8 @@ object ApiClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    val quizApi: QuizApi = retrofit.create(QuizApi::class.java)
 
+    val quizApi: QuizApi by lazy {
+        retrofit.create(QuizApi::class.java)
+    }
 }

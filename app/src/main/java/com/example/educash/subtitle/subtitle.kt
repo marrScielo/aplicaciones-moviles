@@ -20,6 +20,7 @@ class subtitle : AppCompatActivity() {
     private var moduloId: Int = 0
     private var listaDetalles = emptyList<ModuloDetalle>() // 🔥 donde se guardará la data
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subtitle)
@@ -59,10 +60,24 @@ class subtitle : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.tabPractica).setOnClickListener {
-            replaceFragment(practica())
+            abrirPractica() // Llama a la nueva función que transfiere los datos
             selectTab(false)
         }
+
     }
+    private fun abrirPractica() {
+        val fragment = practica()
+        val bundle = Bundle()
+        bundle.putInt("moduloId", moduloId)
+        // Usaremos el nombre del módulo como nombre del tema
+        val temaNombre = intent.getStringExtra("moduloNombre") ?: "Subtítulo"
+        bundle.putString("temaNombre", temaNombre)
+        fragment.arguments = bundle
+        replaceFragment(fragment)
+    }
+
+
+
 
     // 🔥 Llama a la API
     private fun loadDetalle() {
