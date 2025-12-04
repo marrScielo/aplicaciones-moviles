@@ -14,6 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EduCash"
         android:usesCleartextTraffic="true">
+        <activity android:name=".question_answer.QuestionAnswer" />
+
         <activity
             android:name=".subtitle.subtitle"
             android:exported="false" />

@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button   // <-- IMPORTANTE
+import android.widget.Button
 import com.example.educash.R
-import com.example.educash.question_answer.question_answer
+import com.example.educash.question_answer.QuestionAnswer   // <- CORREGIDO
 
 class practica : Fragment() {
 
@@ -25,7 +25,7 @@ class practica : Fragment() {
         val btnIniciar = view.findViewById<Button>(R.id.btnIniciarPrueba)
 
         btnIniciar.setOnClickListener {
-            val intent = Intent(requireContext(), question_answer::class.java)
+            val intent = Intent(requireContext(), QuestionAnswer::class.java)  // <- CORREGIDO
             startActivity(intent)
         }
     }

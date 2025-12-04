@@ -11,7 +11,7 @@ import com.example.educash.service.authApi
 
 
 object AppConstantes{
-    const val URL_BASE = "http://192.168.18.162:3000"
+    const val URL_BASE = "http://192.168.18.89:3000"
 }
 
 interface WebService {
