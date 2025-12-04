@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.Button
 import android.widget.TextView
 import com.example.educash.R
@@ -24,10 +25,12 @@ class practica : Fragment() {
         temaNombre = arguments?.getString("temaNombre")
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_practica, container, false)
 
         // 2. Inicializar las vistas del layout
@@ -48,6 +51,7 @@ class practica : Fragment() {
                     putExtra("temaId", moduloId)
                     putExtra("temaNombre", temaNombre)
                     putExtra("moduloId", moduloId)
+
                 }
                 startActivity(intent)
 

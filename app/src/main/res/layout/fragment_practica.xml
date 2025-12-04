@@ -6,8 +6,15 @@
     tools:context=".infomodulos.practica"
     android:padding="20dp">
 
+
     <!-- Contenedor vertical para el Título y la Descripción -->
     <LinearLayout
+
+
+    <!-- Nepecito de marylu -->
+    <TextView
+
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -48,7 +55,9 @@
             android:textColor="@android:color/white"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="80dp"
+
             android:layout_marginTop="20dp"/>
+
     </LinearLayout>
 
 
