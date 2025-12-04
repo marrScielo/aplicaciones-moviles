@@ -15,7 +15,7 @@ import com.example.educash.entidad.PreguntaDTO
 import com.example.educash.service.ApiClient
 import kotlinx.coroutines.launch
 
-class question_answer : AppCompatActivity() {
+class QuestionAnswer : AppCompatActivity() {
 
     private lateinit var tvTema: TextView
     private lateinit var tvProgreso: TextView
@@ -39,6 +39,7 @@ class question_answer : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_question_answer)
 
+        // Inicializar vistas
         tvTema = findViewById(R.id.tvTema)
         tvProgreso = findViewById(R.id.tvProgreso)
         tvPregunta = findViewById(R.id.tvPregunta)
@@ -48,32 +49,36 @@ class question_answer : AppCompatActivity() {
         btnC = findViewById(R.id.btnC)
         progressTimer = findViewById(R.id.progressTimer)
 
+        // Recibir datos desde el fragment
         temaId = intent.getIntExtra("temaId", 1)
         temaNombre = intent.getStringExtra("temaNombre") ?: "Tema"
         tvTema.text = temaNombre
 
+        // Cargar preguntas desde API
         lifecycleScope.launch {
             try {
                 val resp = ApiClient.quizApi.getQuiz(temaId)
                 if (!resp.isSuccessful) {
-                    Toast.makeText(this@question_answer, "HTTP ${resp.code()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@QuestionAnswer, "HTTP ${resp.code()}", Toast.LENGTH_SHORT).show()
                     return@launch
                 }
 
                 lista = resp.body()?.data.orEmpty()
 
                 if (lista.isEmpty()) {
-                    Toast.makeText(this@question_answer, "No hay preguntas", Toast.LENGTH_SHORT).show()
-                    finish(); return@launch
+                    Toast.makeText(this@QuestionAnswer, "No hay preguntas", Toast.LENGTH_SHORT).show()
+                    finish()
+                    return@launch
                 }
 
                 mostrar(0)
 
             } catch (e: Exception) {
-                Toast.makeText(this@question_answer, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@QuestionAnswer, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
 
+        // Botones de respuesta
         btnA.setOnClickListener { verificar(0, btnA) }
         btnB.setOnClickListener { verificar(1, btnB) }
         btnC.setOnClickListener { verificar(2, btnC) }
@@ -96,7 +101,7 @@ class question_answer : AppCompatActivity() {
             it.alpha = 1f
         }
 
-        // Reinicia barra y timer
+        // Reiniciar barra y timer
         progressTimer.progress = 100
         timer?.cancel()
         timer = object : CountDownTimer(tiempoLimite, 100) {
@@ -108,7 +113,7 @@ class question_answer : AppCompatActivity() {
 
             override fun onFinish() {
                 progressTimer.progress = 0
-                Toast.makeText(this@question_answer, "⏳ Tiempo agotado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@QuestionAnswer, "⏳ Tiempo agotado", Toast.LENGTH_SHORT).show()
                 avanzar()
             }
         }.start()
